@@ -87,57 +87,68 @@ public class Obligatorio2 {
             tablero.mostrarConBordes(letras);
             Movimiento ultimoMovimiento = null; // Variable para almacenar el último movimiento registrado
 
-            while (!tablero.finalMatriz(letras)) {
+            while (!tablero.matriztodacompleta(letras)) {
                 System.out.println("Ingrese el numero de la fila que desea cambiar:");
                 String filasInput = scanner.nextLine();
                 if (filasInput.equalsIgnoreCase("x")) {
                     System.exit(0);
                 }
 
-                // Verificar si el usuario ingresó -1
+                
                 if (filasInput.equals("-1")) {
                     System.out.println("Ingrese el numero de la columna que desea cambiar:");
                     String columnasInput = scanner.nextLine();
                     if (columnasInput.equalsIgnoreCase("x")) {
                         System.exit(0);
                     }
+                    if (columnasInput.equals("-1")) {
 
-                    int columna = Integer.parseInt(columnasInput);
+                        int columna = Integer.parseInt(columnasInput);
 
-                    if (ultimoMovimiento != null) {
-                        // Realizar nuevamente el mismo movimiento (último movimiento registrado)
-                        tablero.cambiarColorPorSimbolo(letras, ultimoMovimiento.getFila(), ultimoMovimiento.getColumna());
-                        movimientosRealizados.add(new Movimiento(ultimoMovimiento.getFila(), ultimoMovimiento.getColumna()));
+                        if (ultimoMovimiento != null) {
+                            // Realizar nuevamente el mismo movimiento (último movimiento registrado)
+                            tablero.cambiarColorPorSimbolo(letras, ultimoMovimiento.getFila(), ultimoMovimiento.getColumna());
+                            movimientosRealizados.add(new Movimiento(ultimoMovimiento.getFila(), ultimoMovimiento.getColumna()));
+                        } else {
+                            System.out.println("No hay movimientos para retroceder.");
+                        }
+                    
+                    }else{ 
+                        if (!columnasInput.equals("-1")){
+                              System.out.println("Movimiento invalido...");
+                              continue;
+                        }
+                    } 
+                        
+                        
                     } else {
-                        System.out.println("No hay movimientos para retroceder.");
-                    }
-                } else {
+                        
                     int fila = Integer.parseInt(filasInput);
-                    System.out.println("Ingrese el numero de la columna que desea cambiar:");
-                    String columnasInput = scanner.nextLine();
-                    if (columnasInput.equalsIgnoreCase("x")) {
-                        System.exit(0);
+                        System.out.println("Ingrese el numero de la columna que desea cambiar:");
+                        String columnasInput = scanner.nextLine();
+                        if (columnasInput.equalsIgnoreCase("x")) {
+                            System.exit(0);
+                        }
+                        int columna = Integer.parseInt(columnasInput);
+
+                        tablero.cambiarColorPorSimbolo(letras, fila, columna);
+
+                        // Registrar el movimiento realizado
+                        movimientosRealizados.add(new Movimiento(fila, columna));
+                        
+                        // Actualizar el último movimiento
+                        ultimoMovimiento = new Movimiento(fila, columna);
                     }
-                    int columna = Integer.parseInt(columnasInput);
 
-                    tablero.cambiarColorPorSimbolo(letras, fila, columna);
-
-                    // Registrar el movimiento realizado
-                    movimientosRealizados.add(new Movimiento(fila, columna));
-
-                    // Actualizar el último movimiento
-                    ultimoMovimiento = new Movimiento(fila, columna);
+                    // Mostrar la matriz después de cada iteración del bucle (una vez)
+                    tablero.mostrarConBordes(letras);
                 }
 
-                // Mostrar la matriz después de cada iteración del bucle (una vez)
-                tablero.mostrarConBordes(letras);
+                System.out.println("¡Ganaste!");
+
+                // Mostrar los movimientos realizados
+                tablero.mostrarMovimientos(movimientosRealizados);
             }
 
-            System.out.println("¡Ganaste!");
-
-            // Mostrar los movimientos realizados
-            tablero.mostrarMovimientos(movimientosRealizados);
         }
-
     }
-}

@@ -2,6 +2,7 @@ package Dominio;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tablero {
@@ -76,14 +77,39 @@ public class Tablero {
     }
 
     public void mostrarConBordes(String[][] matriz) {
-        for (String[] matriz1 : matriz) {
-            bordesCeldas(matriz[0].length);
-            for (int col = 0; col < matriz[0].length; col++) {
-                System.out.print("|" + matriz1[col]);
-            }
-            System.out.println("|");
+        int numRows = matriz.length;
+        int numCols = matriz[0].length;
+
+        // Imprimir números de columna empezando desde 1
+        System.out.print(" "); // Espacio en blanco para alinear los números de fila
+        for (int col = 0; col < numCols; col++) {
+            System.out.print("  " + (col + 1) + " ");
         }
-        bordesCeldas(matriz[0].length);
+        System.out.println();
+
+        for (int fila = 0; fila < numRows; fila++) {
+            // Imprimir la línea superior de la celda
+            System.out.print(" ");
+            bordesCeldas(numCols);
+
+            // Imprimir el número de fila y el contenido de la celda
+            System.out.print(fila + 1 + "|"); // Sumar 1 para que los números de fila empiecen desde 1
+            for (int col = 0; col < numCols; col++) {
+                System.out.print("" + matriz[fila][col] + "|");
+
+                // Imprimir un espacio en lugar de un borde en la última columna
+                if (col == numCols - 1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+            if (fila == numRows - 1) {
+                // Imprimir la línea inferior de la matriz después de la última fila
+                System.out.print(" ");
+                bordesCeldas(numCols);
+            }
+        }
     }
 
     public void bordesCeldas(int numCeldas) {
@@ -181,7 +207,7 @@ public class Tablero {
         return matrizGenerar;
     }
 
-    public Boolean finalMatriz(String[][] matriz) {
+    public Boolean matriztodacompleta(String[][] matriz) {
         Boolean fin = false;
         int ok = 0;
         if (matriz[0][0].contains(colorRojo)) {
@@ -216,33 +242,29 @@ public class Tablero {
 
     }
 
- private String[][] copiarMatriz(String[][] source) {
-    if (source == null) {
-        return null; // Devuelve null si source es null
+    private String[][] copiarMatriz(String[][] source) {
+        if (source == null) {
+            return null; // Devuelve null si source es null
+        }
+
+        String[][] copy = new String[source.length][];
+        for (int i = 0; i < source.length; i++) {
+            copy[i] = Arrays.copyOf(source[i], source[i].length);
+        }
+        return copy;
     }
-    
-    String[][] copy = new String[source.length][];
-    for (int i = 0; i < source.length; i++) {
-        copy[i] = Arrays.copyOf(source[i], source[i].length);
+
+    private String[][] matrizOriginal = null; // Inicializa matrizOriginal como null
+
+    private List<String[][]> estadosAnteriores = new ArrayList<>(); // Lista para mantener estados anteriores
+
+    public void guardarCopiaMatriz() {
+        String[][] copia = copiarMatriz(matriz);
+        estadosAnteriores.add(copia); // Agregar copia al final de la lista
     }
-    return copy;
-}
 
-
-private String[][] matrizOriginal = null; // Inicializa matrizOriginal como null
-
-public void guardarCopiaMatriz() {
-    matrizOriginal = copiarMatriz(matriz);
-}
-
-public void retrocederUnPaso(int fila, int columna) {
-    if (matrizOriginal != null) {
-        // Restaurar la matriz a la copia previamente guardada (matrizOriginal)
-        matriz = copiarMatriz(matrizOriginal);
-        matrizOriginal = null; // Borra la copia para evitar retroceder más de un paso
-    }
-}
-
-
-
+  public void mostrardosmatrices(){
+      String flecha= "==>";
+      
+  }
 }
