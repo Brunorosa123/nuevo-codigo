@@ -1,3 +1,4 @@
+//Bruno Rosa(318321), Maximo Reyna().
 package Dominio;
 
 import java.util.ArrayList;
@@ -8,12 +9,12 @@ import java.util.Random;
 public class Tablero {
 
     private String[][] matriz;
-    private String[][] copiaMatriz;
 
     private int nivel;
     private String colorRojo;
     private String colorAzul;
     private ArrayList<Movimiento> movimientos;
+    private ArrayList<Movimiento> movimientosAleatorios;
 
     // Constructor por defecto
     public Tablero() {
@@ -23,6 +24,8 @@ public class Tablero {
         movimientos = new ArrayList<>();
         colorRojo = "\u001B[31m";
         colorAzul = "\u001B[34m";
+        movimientosAleatorios = new ArrayList<>(); // Inicializa la lista de movimientos aleatorios
+
     }
 
     // Constructor con parámetros
@@ -120,6 +123,10 @@ public class Tablero {
     }
 
     public void cambiarColorPorSimbolo(String[][] matriz, int fila, int columna) {
+    fila--; 
+    columna--;
+
+    if (fila >= 0 && fila < matriz.length && columna >= 0 && columna < matriz[0].length) {
         String rojo = "\u001B[31m";
         String azul = "\u001B[34m";
 
@@ -180,32 +187,34 @@ public class Tablero {
 
         }
     }
-
-    public String[][] generarMatrizAleatoriaColores(int filas, int columnas, int nivel, ArrayList<Movimiento> movimientos) {
-        String[][] matrizGenerar = new String[filas][columnas];
-        Random rand = new Random();
-        String[] simbolos = {"|", "/", "\\", "-"};
-
-        String colorInicial = (rand.nextBoolean()) ? "\u001B[31m" : "\u001B[34m"; // Rojo o azul
-
-        for (int fila = 0; fila < filas; fila++) {
-            for (int col = 0; col < columnas; col++) {
-                int indice = rand.nextInt(simbolos.length);
-                String simbolo = simbolos[indice];
-                matrizGenerar[fila][col] = String.format(" %s%s\u001B[0m ", colorInicial, simbolo); // Espacio a la izquierda y a la derecha
-            }
-        }
-
-        for (int i = 0; i < nivel; i++) {
-            int filaAleatoria = rand.nextInt(filas);
-            int columnaAleatoria = rand.nextInt(columnas);
-            cambiarColorPorSimbolo(matrizGenerar, filaAleatoria, columnaAleatoria);
-
-            movimientos.add(new Movimiento(filaAleatoria, columnaAleatoria)); // Agrega el movimiento a la lista
-        }
-
-        return matrizGenerar;
     }
+    
+   public String[][] generarMatrizAleatoriaColores(int filas, int columnas, int nivel, ArrayList<Movimiento> movimientos) {
+    String[][] matrizGenerar = new String[filas][columnas];
+    Random rand = new Random();
+    String[] simbolos = {"|", "/", "\\", "-"};
+
+    String colorInicial = (rand.nextBoolean()) ? "\u001B[31m" : "\u001B[34m"; // Rojo o azul
+
+    for (int fila = 0; fila < filas; fila++) {
+        for (int col = 0; col < columnas; col++) {
+            int indice = rand.nextInt(simbolos.length);
+            String simbolo = simbolos[indice];
+            matrizGenerar[fila][col] = String.format(" %s%s\u001B[0m ", colorInicial, simbolo); // Espacio a la izquierda y a la derecha
+        }
+    }
+
+    for (int i = 0; i < nivel; i++) {
+        int filaAleatoria = rand.nextInt(filas);
+        int columnaAleatoria = rand.nextInt(columnas);
+        cambiarColorPorSimbolo(matrizGenerar, filaAleatoria, columnaAleatoria);
+
+        movimientos.add(new Movimiento(filaAleatoria, columnaAleatoria)); // Corregido el nombre de la lista
+    }
+
+    return matrizGenerar;
+}
+
 
     public Boolean matriztodacompleta(String[][] matriz) {
         Boolean fin = false;
@@ -262,9 +271,4 @@ public class Tablero {
         String[][] copia = copiarMatriz(matriz);
         estadosAnteriores.add(copia); // Agregar copia al final de la lista
     }
-
-  public void mostrardosmatrices(){
-      String flecha= "==>";
-      
-  }
 }
