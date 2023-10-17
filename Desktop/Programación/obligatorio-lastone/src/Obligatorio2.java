@@ -26,19 +26,19 @@ public class Obligatorio2 {
         while (true) {
             System.out.println("Bienvenido a Soliflips, si desea jugar ingrese 1, de lo contrario ingrese 2");
             String res = scanner.nextLine();
-            
-             if(res.equals("2")){
-            System.out.println("Saliendo del programa...");
-                 return;
+
+            if (res.equals("2")) {
+                System.out.println("Saliendo del programa...");
+                return;
             }
-            
+
             if (!res.equals("1")) {
                 System.out.println("Opcion invalida. Por favor, elija una opcion valida.");
                 continue;
             }
-            
-            if(res.equals("2")){
-            return;
+
+            if (res.equals("2")) {
+                return;
             }
 
             while (res.equals("1")) {
@@ -69,6 +69,7 @@ public class Obligatorio2 {
                     }
                     case "b" -> {
                         letras = Tablero.generarMatrizAleatoria(5, 6);
+
                     }
                     case "c" -> {
                         System.out.println("Ingrese la cantidad de filas");
@@ -105,12 +106,10 @@ public class Obligatorio2 {
                 }
 
                 if (letras != null) {
-
                     tablero.mostrarConBordes(letras);
                     tiempoInicio = System.nanoTime();
-
+                    
                     while (!tablero.matriztodacompleta(letras)) {
-
                         System.out.println("Ingrese el numero de la fila que desea cambiar (-1 para retroceder, 'x' para salir):");
                         String filasInput = scanner.nextLine();
                         if (filasInput.equalsIgnoreCase("x")) {
@@ -145,6 +144,9 @@ public class Obligatorio2 {
                             }
                             int columna = Integer.parseInt(columnasInput);
 
+                            // Guarda la matriz antes del movimiento
+                            String[][] matrizAntes = tablero.copiarMatriz(letras);
+
                             tablero.cambiarColorPorSimbolo(letras, fila, columna);
 
                             // Registrar el movimiento realizado
@@ -153,11 +155,10 @@ public class Obligatorio2 {
                             // Actualizar el último movimiento
                             ultimoMovimiento = new Movimiento(fila, columna);
 
-                            // Mostrar la matriz después de cada iteración del bucle
-                            tablero.mostrarConBordes(letras);
+                            // Llama al método para mostrar ambas matrices antes y después del movimiento
+                            tablero.mostrarMatricesConMovimiento(matrizAntes, letras);
                         }
                     }
-
                 }
 
                 long tiempoFin = System.nanoTime();
@@ -172,11 +173,11 @@ public class Obligatorio2 {
                 if (respuesta.equals("1")) {
 
                     Menu();
-               
+
                 } else if (respuesta.equals("2")) {
                     return;
-                    
-                    } else {
+
+                } else {
                     tablero.mostrarMovimientos(movimientosRealizados);
                 }
             }

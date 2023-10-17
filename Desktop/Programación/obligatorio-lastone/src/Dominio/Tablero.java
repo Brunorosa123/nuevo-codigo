@@ -115,106 +115,98 @@ public class Tablero {
         }
     }
 
-    public void bordesCeldas(int numCeldas) {
-        for (int c = 0; c < numCeldas; c++) {
-            System.out.print("+---");
-        }
-        System.out.println("+");
-    }
-
     public void cambiarColorPorSimbolo(String[][] matriz, int fila, int columna) {
-    fila--; 
-    columna--;
+        fila--;
+        columna--;
 
-    if (fila >= 0 && fila < matriz.length && columna >= 0 && columna < matriz[0].length) {
-        String rojo = "\u001B[31m";
-        String azul = "\u001B[34m";
+        if (fila >= 0 && fila < matriz.length && columna >= 0 && columna < matriz[0].length) {
+            String rojo = "\u001B[31m";
+            String azul = "\u001B[34m";
 
-        String celda = matriz[fila][columna];
-        if (celda.contains("-")) {
-            for (int j = 0; j < matriz[fila].length; j++) {
-                if (matriz[fila][j].contains(rojo)) {
-                    matriz[fila][j] = matriz[fila][j].replace(rojo, azul);
-                } else if (matriz[fila][j].contains(azul)) {
-                    matriz[fila][j] = matriz[fila][j].replace(azul, rojo);
-                }
-            }
-        }
-        if (celda.contains("|")) {
-            for (String[] matriz1 : matriz) {
-                if (matriz1[columna].contains(rojo)) {
-                    matriz1[columna] = matriz1[columna].replace(rojo, azul);
-                } else if (matriz1[columna].contains(azul)) {
-                    matriz1[columna] = matriz1[columna].replace(azul, rojo);
-                }
-            }
-            if (celda.contains(rojo)) {
-                matriz[fila][columna] = matriz[fila][columna].replace(rojo, azul);
-            } else if (celda.contains(azul)) {
-                matriz[fila][columna] = matriz[fila][columna].replace(azul, rojo);
-            }
-        }
-
-        if (celda.contains("\\")) {
-
-            for (int i = 0; i < matriz.length; i++) {
-                for (int j = 0; j < matriz[i].length; j++) {
-                    if (i - j == fila - columna) {  // Verifica si la celda está en la diagonal
-                        if (matriz[i][j].contains(rojo)) {
-                            matriz[i][j] = matriz[i][j].replace(rojo, azul);
-                        } else if (matriz[i][j].contains(azul)) {
-                            matriz[i][j] = matriz[i][j].replace(azul, rojo);
-                        }
+            String celda = matriz[fila][columna];
+            if (celda.contains("-")) {
+                for (int j = 0; j < matriz[fila].length; j++) {
+                    if (matriz[fila][j].contains(rojo)) {
+                        matriz[fila][j] = matriz[fila][j].replace(rojo, azul);
+                    } else if (matriz[fila][j].contains(azul)) {
+                        matriz[fila][j] = matriz[fila][j].replace(azul, rojo);
                     }
                 }
             }
-        }
+            if (celda.contains("|")) {
+                for (String[] matriz1 : matriz) {
+                    if (matriz1[columna].contains(rojo)) {
+                        matriz1[columna] = matriz1[columna].replace(rojo, azul);
+                    } else if (matriz1[columna].contains(azul)) {
+                        matriz1[columna] = matriz1[columna].replace(azul, rojo);
+                    }
+                }
+                if (celda.contains(rojo)) {
+                    matriz[fila][columna] = matriz[fila][columna].replace(rojo, azul);
+                } else if (celda.contains(azul)) {
+                    matriz[fila][columna] = matriz[fila][columna].replace(azul, rojo);
+                }
+            }
 
-        if (celda.contains("/")) {
-            for (int i = 0; i < matriz.length; i++) {
-                for (int j = 0; j < matriz[i].length; j++) {
-                    if (i + j == fila + columna) {  // Verifica si la celda está en la diagonal
-                        celda = matriz[i][j];
-                        if (celda.contains(rojo)) {
-                            matriz[i][j] = celda.replace(rojo, azul);
-                        }
-                        if (celda.contains(azul)) {
-                            matriz[i][j] = celda.replace(azul, rojo);
+            if (celda.contains("\\")) {
+
+                for (int i = 0; i < matriz.length; i++) {
+                    for (int j = 0; j < matriz[i].length; j++) {
+                        if (i - j == fila - columna) {  // Verifica si la celda está en la diagonal
+                            if (matriz[i][j].contains(rojo)) {
+                                matriz[i][j] = matriz[i][j].replace(rojo, azul);
+                            } else if (matriz[i][j].contains(azul)) {
+                                matriz[i][j] = matriz[i][j].replace(azul, rojo);
+                            }
                         }
                     }
                 }
             }
 
+            if (celda.contains("/")) {
+                for (int i = 0; i < matriz.length; i++) {
+                    for (int j = 0; j < matriz[i].length; j++) {
+                        if (i + j == fila + columna) {  // Verifica si la celda está en la diagonal
+                            celda = matriz[i][j];
+                            if (celda.contains(rojo)) {
+                                matriz[i][j] = celda.replace(rojo, azul);
+                            }
+                            if (celda.contains(azul)) {
+                                matriz[i][j] = celda.replace(azul, rojo);
+                            }
+                        }
+                    }
+                }
+
+            }
         }
     }
-    }
-    
-   public String[][] generarMatrizAleatoriaColores(int filas, int columnas, int nivel, ArrayList<Movimiento> movimientos) {
-    String[][] matrizGenerar = new String[filas][columnas];
-    Random rand = new Random();
-    String[] simbolos = {"|", "/", "\\", "-"};
 
-    String colorInicial = (rand.nextBoolean()) ? "\u001B[31m" : "\u001B[34m"; // Rojo o azul
+    public String[][] generarMatrizAleatoriaColores(int filas, int columnas, int nivel, ArrayList<Movimiento> movimientos) {
+        String[][] matrizGenerar = new String[filas][columnas];
+        Random rand = new Random();
+        String[] simbolos = {"|", "/", "\\", "-"};
 
-    for (int fila = 0; fila < filas; fila++) {
-        for (int col = 0; col < columnas; col++) {
-            int indice = rand.nextInt(simbolos.length);
-            String simbolo = simbolos[indice];
-            matrizGenerar[fila][col] = String.format(" %s%s\u001B[0m ", colorInicial, simbolo); // Espacio a la izquierda y a la derecha
+        String colorInicial = (rand.nextBoolean()) ? "\u001B[31m" : "\u001B[34m"; // Rojo o azul
+
+        for (int fila = 0; fila < filas; fila++) {
+            for (int col = 0; col < columnas; col++) {
+                int indice = rand.nextInt(simbolos.length);
+                String simbolo = simbolos[indice];
+                matrizGenerar[fila][col] = String.format(" %s%s\u001B[0m ", colorInicial, simbolo); // Espacio a la izquierda y a la derecha
+            }
         }
+
+        for (int i = 0; i < nivel; i++) {
+            int filaAleatoria = rand.nextInt(filas);
+            int columnaAleatoria = rand.nextInt(columnas);
+            cambiarColorPorSimbolo(matrizGenerar, filaAleatoria, columnaAleatoria);
+
+            movimientos.add(new Movimiento(filaAleatoria, columnaAleatoria)); // Corregido el nombre de la lista
+        }
+
+        return matrizGenerar;
     }
-
-    for (int i = 0; i < nivel; i++) {
-        int filaAleatoria = rand.nextInt(filas);
-        int columnaAleatoria = rand.nextInt(columnas);
-        cambiarColorPorSimbolo(matrizGenerar, filaAleatoria, columnaAleatoria);
-
-        movimientos.add(new Movimiento(filaAleatoria, columnaAleatoria)); // Corregido el nombre de la lista
-    }
-
-    return matrizGenerar;
-}
-
 
     public Boolean matriztodacompleta(String[][] matriz) {
         Boolean fin = false;
@@ -251,7 +243,7 @@ public class Tablero {
 
     }
 
-    private String[][] copiarMatriz(String[][] source) {
+    public String[][] copiarMatriz(String[][] source) {
         if (source == null) {
             return null; // Devuelve null si source es null
         }
@@ -270,5 +262,68 @@ public class Tablero {
     public void guardarCopiaMatriz() {
         String[][] copia = copiarMatriz(matriz);
         estadosAnteriores.add(copia); // Agregar copia al final de la lista
+    }
+
+public void mostrarMatricesConMovimiento(String[][] matrizAntes, String[][] matrizDespues) {
+    int numRows = matrizAntes.length;
+    int numCols = matrizAntes[0].length;
+    int columnWidth = 5; // Ancho de las columnas
+
+    // Espacios iniciales para alinear los números de columna
+    System.out.print(" ");
+    for (int col = 0; col < numCols; col++) {
+        System.out.printf("  %d ", col + 1);
+    }
+    System.out.print("  ==>  ");
+    for (int col = 0; col < numCols; col++) {
+        System.out.printf("  %d ", col + 1);
+    }
+    System.out.println();
+
+    // Separador horizontal
+    String horizontalSeparator = " +";
+    for (int i = 0; i < numCols; i++) {
+        horizontalSeparator += "---+";
+    }
+
+    // Espacio en blanco para centrar las columnas
+    String padding = "  ";
+
+    // Separador vertical
+    String separator = "  ==>  ";
+
+    // Imprimir el borde superior de la tabla
+    System.out.println(horizontalSeparator + separator + horizontalSeparator);
+
+    // Imprimir las filas de ambas matrices
+    for (int fila = 0; fila < numRows; fila++) {
+        // Imprimir los elementos de la fila para la matriz antes
+        System.out.print((fila + 1));
+        for (int col = 0; col < numCols; col++) {
+            System.out.printf("|%" + columnWidth + "s", matrizAntes[fila][col]);
+        }
+        System.out.print("|");
+        
+        
+        System.out.print(separator);
+        
+        
+        System.out.print( (fila + 1));
+        for (int col = 0; col < numCols; col++) {
+            System.out.printf("|%-" + columnWidth + "s", matrizDespues[fila][col]);
+        if (col == numCols - 1) {
+            System.out.print("| ");
+        }
+        }
+        System.out.println();
+        System.out.println(horizontalSeparator + separator + horizontalSeparator);
+    }  
+}
+
+    public void bordesCeldas(int numCeldas) {
+        for (int c = 0; c < numCeldas; c++) {
+            System.out.print("+---");
+        }
+        System.out.println("+");
     }
 }
