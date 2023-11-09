@@ -4,15 +4,22 @@
  */
 package Interfaz;
 
+import Dominio.Sistema;
+
 /**
  *
  * @author brumo
  */
-public class OBLIGATORIOGESTIONPERSONAL {
-
+public class Prueba {
+    
     public static void main(String[] args) {
-        Inicio ventanaPrincipal= new Inicio();
+            Sistema sist = new Sistema();
+
+            
+        Inicio ventanaPrincipal= new Inicio(sist );
         ventanaPrincipal.setVisible(true);
+    
+    
     }
     
     }

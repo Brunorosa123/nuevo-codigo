@@ -15,7 +15,17 @@ public class Postulante extends Persona{
     private String linkedin;
     private int nivel;
     private String tipoTrabajo;
-    
+
+    public Postulante(int telefono, String mail, String linkedin, int nivel, String tipoTrabajo, String nombre, int cedula, String direccion) {
+        super(nombre,cedula,direccion);
+        this.telefono = telefono;
+        this.mail = mail;
+        this.linkedin = linkedin;
+        this.nivel = nivel;
+        this.tipoTrabajo = tipoTrabajo;
+    }
+      
+   
    
     
 public int getTelPostulante() {

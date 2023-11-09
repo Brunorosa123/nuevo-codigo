@@ -5,11 +5,18 @@
 package Dominio;
 
 
-public class Persona {
+abstract class Persona {
 
 private String nombre;
 private int cedula;
 private String direccion;
+
+    public Persona(String nombre, int cedula, String direccion) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.direccion = direccion;
+    }
+
 
     public String getNombre() {
         return nombre;

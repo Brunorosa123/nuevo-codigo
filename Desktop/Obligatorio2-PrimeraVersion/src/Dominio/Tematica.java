@@ -7,6 +7,7 @@ package Dominio;
 
 public class Tematica {
 
+    
     public Tematica(String nombreTematica, String descripcion) {
         this.nombreTematica = nombreTematica;
         this.descripcionTematica = descripcion;
@@ -33,7 +34,7 @@ public class Tematica {
     
     @Override
 public String toString() {
-    return "Nombre: " + nombreTematica + ", Descripción: " + descripcionTematica;
+    return this.nombreTematica;
 }
 
 

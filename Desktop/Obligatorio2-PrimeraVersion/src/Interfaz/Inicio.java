@@ -1,11 +1,20 @@
 package Interfaz;
 
+import Dominio.Sistema;
+
 
 public class Inicio extends javax.swing.JFrame {
 
+  private Sistema miModelo;
+  
   
     public Inicio() {
         initComponents();
+    }
+    
+    public Inicio(Sistema s) {
+        initComponents();
+        this.miModelo = s;
     }
 
   
@@ -29,7 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Registrar una tématica");
 
@@ -171,34 +180,34 @@ public class Inicio extends javax.swing.JFrame {
 
     private void RegistrarTemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarTemActionPerformed
 
-      RegistroTematica registro= new RegistroTematica();
+      RegistroTematica registro= new RegistroTematica(miModelo);
       registro.setVisible(true);
       
     }//GEN-LAST:event_RegistrarTemActionPerformed
    
     private void AltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPostulanteActionPerformed
-        AltaPostulante alta= new AltaPostulante();
+        AltaPostulante alta= new AltaPostulante(miModelo);
         alta.setVisible(true);
     }//GEN-LAST:event_AltaPostulanteActionPerformed
 
     private void RegistroEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEvaluadorActionPerformed
-        RegistroEvaluador registro= new RegistroEvaluador();
+        RegistroEvaluador registro= new RegistroEvaluador(miModelo);
         registro.setVisible(true);
     }//GEN-LAST:event_RegistroEvaluadorActionPerformed
 
     private void BajaPostulantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajaPostulantesActionPerformed
-        BajaPostulantes alta= new BajaPostulantes();
+        BajaPostulantes alta= new BajaPostulantes(miModelo);
         alta.setVisible(true);
     }//GEN-LAST:event_BajaPostulantesActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        HistorialPostulante historial= new HistorialPostulante();
+        HistorialPostulante historial= new HistorialPostulante(miModelo);
         historial.setVisible(true);
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        RegistroExperiencia ventanaExp = new RegistroExperiencia();
+        RegistroExperiencia ventanaExp = new RegistroExperiencia(miModelo);
         ventanaExp.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 

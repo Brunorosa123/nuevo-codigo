@@ -4,10 +4,17 @@
  */
 package Dominio;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 
+
+
 public class Sistema {
+private int valor;
+private PropertyChangeSupport manejador = new PropertyChangeSupport(this);
+
     
 public ArrayList<Postulante> listaPostulantes;
 public ArrayList<Evaluador> listaEvaluadores;
@@ -20,12 +27,19 @@ public ArrayList<Tematica> listaTematicas;
         listaPostulantes = new ArrayList<Postulante>();
         listaEvaluadores = new ArrayList<Evaluador>();
         listaPuestos = new ArrayList<Puesto>();
-    }
+        
+  }
   
-    public void agregarTematica(Tematica tema) {
+   public void agregarTematica(Tematica tema) {
+        manejador.firePropertyChange("tematicaAgregada", null, tema);
         listaTematicas.add(tema);
+
     }
 
+   
+
+    
+    
     // Obtener la lista de temáticas
     public ArrayList<Tematica> getListaTematicas() {
         return listaTematicas;
@@ -55,6 +69,11 @@ public ArrayList<Tematica> listaTematicas;
     }
 
   
+ 
+    
+    public void agregarEscuchas (PropertyChangeListener c){
+      manejador.addPropertyChangeListener(c);
+  }
 
     
     

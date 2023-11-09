@@ -4,20 +4,29 @@
  */
 package Interfaz;
 
+import Dominio.Sistema;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 /**
  *
  * @author brumo
  */
-public class AltaPostulante extends javax.swing.JFrame {
+public class AltaPostulante extends javax.swing.JFrame implements PropertyChangeListener{
 
-    /**
-     * Creates new form AltaPostulante
-     */
+    private Sistema miModelo; 
+
+    
     public AltaPostulante() {
         initComponents();
-    
-    
     }
+    
+     public AltaPostulante(Sistema s) {
+        initComponents();
+        this.miModelo = s;
+     }
+
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -234,9 +243,29 @@ public class AltaPostulante extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
+    /*String nombreTematica = nombreRegistro.getText();
+    String descripcion = descripcionTematica.getText();
+    Persona person = new Persona(});
+    sistema.agregarTematica(tema);
+    nombreRegistro.setText("");
+    descripcionTematica.setText("");*/
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //if(){}
+        RegistroExperiencia ventanaExp = new RegistroExperiencia();
+        ventanaExp.setVisible(true);    }//GEN-LAST:event_jButton2ActionPerformed
+    
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -301,4 +330,9 @@ public class AltaPostulante extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
