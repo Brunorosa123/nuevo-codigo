@@ -1,21 +1,19 @@
 package Interfaz;
 
+import Dominio.Postulante;
 import Dominio.Sistema;
-
 
 public class Inicio extends javax.swing.JFrame {
 
-  private Sistema miModelo;
-  
- 
-    
+    private Sistema miModelo;
+    private Postulante postu;
+
     public Inicio(Sistema s) {
         initComponents();
         this.miModelo = s;
-    
+
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -190,29 +188,29 @@ public class Inicio extends javax.swing.JFrame {
 
     private void RegistrarTemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarTemActionPerformed
 
-      RegistroTematica registro= new RegistroTematica(miModelo);
-      registro.setVisible(true);
-      
+        RegistroTematica registro = new RegistroTematica(miModelo);
+        registro.setVisible(true);
+
     }//GEN-LAST:event_RegistrarTemActionPerformed
-   
+
     private void AltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPostulanteActionPerformed
         AltaPostulante alta = new AltaPostulante(miModelo);
         alta.setVisible(true);
     }//GEN-LAST:event_AltaPostulanteActionPerformed
 
     private void RegistroEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEvaluadorActionPerformed
-        RegistroEvaluador registro= new RegistroEvaluador(miModelo);
+        RegistroEvaluador registro = new RegistroEvaluador(miModelo);
         registro.setVisible(true);
     }//GEN-LAST:event_RegistroEvaluadorActionPerformed
 
     private void BajaPostulantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajaPostulantesActionPerformed
         BajaPostulantes bajaPostulantes = new BajaPostulantes(miModelo);
         bajaPostulantes.setVisible(true);
-        
+
     }//GEN-LAST:event_BajaPostulantesActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        HistorialPostulante historial= new HistorialPostulante(miModelo);
+        HistorialPostulante historial = new HistorialPostulante(miModelo);
         historial.setVisible(true);
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -223,12 +221,11 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Comienzo ventanaPrincipal= new Comienzo(miModelo );
+        Comienzo ventanaPrincipal = new Comienzo(miModelo);
         ventanaPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AltaPostulante;

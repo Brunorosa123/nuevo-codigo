@@ -18,6 +18,7 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
 
     private Sistema miModelo;
     private Sistema modelojlist;
+    private Postulante postu;
 
     private ArrayList<Integer> cedulasRegistradas = new ArrayList<>();
 
@@ -274,7 +275,7 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
 
             // Realiza acciones basadas en la opción seleccionada
             if ("remoto".equals(opcionSeleccionada) || "presencial".equals(opcionSeleccionada) || "mixto".equals(opcionSeleccionada)) {
-                Postulante postu = new Postulante(nombrePost, cedulaPost, direccion, tel, mailPost, linkedinPostu, opcionSeleccionada);
+                Postulante postu = new Postulante(nombrePost, cedulaPost, direccion, tel, mailPost, linkedinPostu, opcionSeleccionada,new ArrayList<>());
                 miModelo.agregarPostulante(postu);
 
                 // Si se agrega el postulante con éxito, agregar la cédula al array

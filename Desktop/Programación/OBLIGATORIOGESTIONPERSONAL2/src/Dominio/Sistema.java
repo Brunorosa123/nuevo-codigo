@@ -74,6 +74,8 @@ public ArrayList<Tematica> listaTematicas;
     }
     
     
+    
+    
     public void agregarEscuchas (PropertyChangeListener c){
       manejador.addPropertyChangeListener(c);
   }

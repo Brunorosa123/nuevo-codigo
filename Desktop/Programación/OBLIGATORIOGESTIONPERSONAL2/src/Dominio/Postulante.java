@@ -4,6 +4,8 @@
  */
 package Dominio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author brumo
@@ -14,13 +16,17 @@ public class Postulante extends Persona{
     private String mail;
     private String linkedin;
     private String tipoTrabajo;
+    private ArrayList<String> tematicasConNiveles;
 
-    public Postulante (String nombre, int cedula, String direccion, int telefono, String mail, String linkedin, String tipoTrabajo) {
+    
+    public Postulante (String nombre, int cedula, String direccion, int telefono, String mail, String linkedin, String tipoTrabajo, ArrayList<String> tematicasConNiveles) {
         super(nombre,cedula,direccion);
         this.telefono = telefono;
         this.mail = mail;
         this.linkedin = linkedin;
         this.tipoTrabajo = tipoTrabajo;
+                this.tematicasConNiveles = tematicasConNiveles != null ? tematicasConNiveles : new ArrayList<>();
+
     }
       
    
@@ -46,5 +52,17 @@ public int getNivelPostulante() {
 public String getTipoTrabajoPostulante() {
         return tipoTrabajo;
     }
+
+
+public void agregarTematicasConNiveles(String tematica) {
+        tematicasConNiveles.add(tematica);
+    }
+
+    public ArrayList<String> getTematicasConNiveles() {
+        return tematicasConNiveles;
+    }
+
+
+
 
 }

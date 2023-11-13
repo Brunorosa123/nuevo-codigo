@@ -1,27 +1,31 @@
-
 package Interfaz;
 
+import Dominio.Postulante;
 import Dominio.Tematica;
 import Dominio.Sistema;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.SpinnerNumberModel;
 
 public class RegistroExperiencia extends javax.swing.JFrame implements PropertyChangeListener {
 
     private Sistema miModelo;
+    private Postulante postu;
 
-    
+    DefaultListModel<String> modelojlistpostnivel = new DefaultListModel<>();
+    SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 10, 1);
 
     public RegistroExperiencia(Sistema s) {
-
         this.miModelo = s;
-         initComponents();
-        
+        initComponents();
+        jListconnivel.setModel(modelojlistpostnivel);
+        nivelSpinner.setModel(model);
 
-    ComboBoxTematicas.removeAllItems(); // Limpia todos los elementos actuales en el JComboBox.
+        ComboBoxTematicas.removeAllItems(); // Limpia todos los elementos actuales en el JComboBox.
 
         for (Tematica tematica : miModelo.listaTematicas) {
             ComboBoxTematicas.addItem(tematica.getNombreTematica());
@@ -29,6 +33,16 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
 
     }
 
+    private Postulante obtenerPostulanteActual() {
+    // Asumiendo que listaPostulantes contiene los postulantes registrados y no está vacía
+    if (!miModelo.getListaPostulantes().isEmpty()) {
+        return miModelo.getListaPostulantes().get(miModelo.getListaPostulantes().size() - 1);
+    } else {
+        // Manejo de error o retorno de null según tus necesidades
+        return null;
+    }
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,8 +69,8 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
         jScrollPane5 = new javax.swing.JScrollPane();
         jListPost = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonRegistrartem = new javax.swing.JButton();
+        botonEliminarpostnivel = new javax.swing.JButton();
         agregarNivel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,7 +79,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
         ComboBoxTematicas = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
+        jListconnivel = new javax.swing.JList<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -117,19 +131,19 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Registrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistrartem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonRegistrartem.setText("Registrar");
+        botonRegistrartem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonRegistrartemActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminarpostnivel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonEliminarpostnivel.setText("Eliminar");
+        botonEliminarpostnivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonEliminarpostnivelActionPerformed(evt);
             }
         });
 
@@ -156,7 +170,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
             }
         });
 
-        jScrollPane9.setViewportView(jList5);
+        jScrollPane9.setViewportView(jListconnivel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +181,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -181,20 +195,19 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(nivelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(agregarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(agregarNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
+                                .addComponent(botonRegistrartem)
                                 .addGap(21, 21, 21))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(botonEliminarpostnivel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(66, 66, 66)
                                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -219,7 +232,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(botonEliminarpostnivel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,7 +240,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
                         .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(botonRegistrartem))
                 .addContainerGap())
         );
 
@@ -243,27 +256,57 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
 
     }//GEN-LAST:event_ComboBoxTematicasActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonRegistrartemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrartemActionPerformed
+        // Obtén el postulante actual (de alguna manera que tengas implementada en tu código)
+    Postulante postulanteActual = obtenerPostulanteActual();
 
+    // Verifica si el postulante actual no es nulo
+    if (postulanteActual != null) {
+        // Obtiene las temáticas del DefaultListModel
+        ArrayList<String> tematicasModelo = new ArrayList<>();
+        for (int i = 0; i < modelojlistpostnivel.getSize(); i++) {
+            tematicasModelo.add(modelojlistpostnivel.getElementAt(i));
+        }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+        // Agrega las temáticas al postulante
+        for (String tematica : tematicasModelo) {
+            postulanteActual.agregarTematicasConNiveles(tematica);
+        }
+        modelojlistpostnivel.clear();
+    }
+    }//GEN-LAST:event_botonRegistrartemActionPerformed
 
     private void agregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarNivelActionPerformed
-        // TODO add your handling code here:
+        String nombreTematica = ComboBoxTematicas.getSelectedItem().toString();
+        int nivel = (int) nivelSpinner.getValue();
+
+        String tematicaConNivel = nombreTematica + "(" + nivel + ")";
+
+        if (!modelojlistpostnivel.contains(tematicaConNivel)) {
+            modelojlistpostnivel.addElement(tematicaConNivel);
+        }
     }//GEN-LAST:event_agregarNivelActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botonEliminarpostnivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarpostnivelActionPerformed
+
+        if (jListconnivel != null) {
+
+            int indiceSeleccionado = jListconnivel.getSelectedIndex();
+            String tematicaEliminar = modelojlistpostnivel.getElementAt(indiceSeleccionado);
+            modelojlistpostnivel.remove(indiceSeleccionado);
+
+        }
+
+    }//GEN-LAST:event_botonEliminarpostnivelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CampoExp;
     private javax.swing.JComboBox<String> ComboBoxTematicas;
     private javax.swing.JButton agregarNivel;
+    private javax.swing.JButton botonEliminarpostnivel;
+    private javax.swing.JButton botonRegistrartem;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -272,8 +315,8 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
-    private javax.swing.JList<String> jList5;
     private javax.swing.JList<String> jListPost;
+    private javax.swing.JList<String> jListconnivel;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;

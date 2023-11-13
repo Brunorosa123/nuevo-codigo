@@ -16,17 +16,17 @@ public class BajaPostulantes extends javax.swing.JFrame implements PropertyChang
 
     private Sistema miModelo; 
 
-    DefaultListModel<String> modelojlist = new DefaultListModel<>();
+    DefaultListModel<String> modelojlistbaja = new DefaultListModel<>();
     
     
  
     public  BajaPostulantes(Sistema s) {
         initComponents();
         this.miModelo = s;
-        jListPost.setModel(modelojlist);
+        jListPost.setModel(modelojlistbaja);
     
         for (Postulante postulante : miModelo.getListaPostulantes()) {
-            modelojlist.addElement(postulante.getNombre());
+            modelojlistbaja.addElement(postulante.getNombre());
     }
     
  //   public void actualizarJList() {
@@ -103,10 +103,10 @@ public class BajaPostulantes extends javax.swing.JFrame implements PropertyChang
     // Verificar si se seleccionó un elemento
     if (indiceSeleccionado != -1) {
         // Obtener el nombre del postulante seleccionado
-        String postulanteEliminar = modelojlist.getElementAt(indiceSeleccionado);
+        String postulanteEliminar = modelojlistbaja.getElementAt(indiceSeleccionado);
 
         // Eliminar el postulante del modelo de lista
-        modelojlist.remove(indiceSeleccionado);
+        modelojlistbaja.remove(indiceSeleccionado);
 
         // Eliminar el postulante de la lista original en el sistema
         for (Postulante postulante : miModelo.getListaPostulantes()) {
