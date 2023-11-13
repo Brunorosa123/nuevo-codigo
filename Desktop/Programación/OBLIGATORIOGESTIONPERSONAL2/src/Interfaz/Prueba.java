@@ -16,7 +16,7 @@ public class Prueba {
             Sistema sist = new Sistema();
 
     
-        Inicio ventanaPrincipal= new Inicio(sist );
+        Comienzo ventanaPrincipal= new Comienzo(sist );
         ventanaPrincipal.setVisible(true);
     
     

@@ -40,7 +40,10 @@ public ArrayList<Tematica> listaTematicas;
                listaPostulantes.add(postu);
    }
 
-    
+     public void agregarEvaluador(Evaluador evalu){
+               manejador.firePropertyChange("evaluadoragregado", null, evalu);
+               listaEvaluadores.add(evalu);
+   }
     
     // Obtener la lista de temáticas
     public ArrayList<Tematica> getListaTematicas() {

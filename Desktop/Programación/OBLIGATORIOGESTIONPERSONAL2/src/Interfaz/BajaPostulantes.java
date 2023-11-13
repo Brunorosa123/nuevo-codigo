@@ -97,9 +97,25 @@ public class BajaPostulantes extends javax.swing.JFrame implements PropertyChang
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // Obtener el índice seleccionado en la JList
+    int indiceSeleccionado = jListPost.getSelectedIndex();
 
+    // Verificar si se seleccionó un elemento
+    if (indiceSeleccionado != -1) {
+        // Obtener el nombre del postulante seleccionado
+        String postulanteEliminar = modelojlist.getElementAt(indiceSeleccionado);
 
+        // Eliminar el postulante del modelo de lista
+        modelojlist.remove(indiceSeleccionado);
 
+        // Eliminar el postulante de la lista original en el sistema
+        for (Postulante postulante : miModelo.getListaPostulantes()) {
+            if (postulante.getNombre().equals(postulanteEliminar)) {
+                miModelo.getListaPostulantes().remove(postulante);
+                break; // Importante: salir del bucle después de eliminar el postulante
+            }
+        }
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
  

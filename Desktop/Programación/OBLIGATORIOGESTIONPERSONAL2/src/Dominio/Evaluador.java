@@ -9,7 +9,7 @@ public class Evaluador extends Persona {
  
     private int añoIngreso;
 
-    public Evaluador(String nombre, int cedula, String direccion) {
+    public Evaluador(String nombre, int cedula, String direccion, int añoingresoEv) {
         super(nombre, cedula, direccion);
     }
 
