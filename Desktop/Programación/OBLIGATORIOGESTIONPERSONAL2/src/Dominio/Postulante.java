@@ -6,10 +6,7 @@ package Dominio;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author brumo
- */
+
 public class Postulante extends Persona{
     
     private int telefono;

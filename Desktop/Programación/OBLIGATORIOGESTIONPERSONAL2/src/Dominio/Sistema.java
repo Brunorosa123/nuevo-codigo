@@ -53,7 +53,7 @@ public ArrayList<Tematica> listaTematicas;
         return listaPostulantes;
     }
 
-    public ArrayList getListaEvaluadores() {
+    public ArrayList<Evaluador> getListaEvaluadores() {
         return listaEvaluadores;
     }
 

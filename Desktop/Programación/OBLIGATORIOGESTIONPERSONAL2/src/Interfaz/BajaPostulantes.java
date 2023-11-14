@@ -8,10 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author maxim
- */
+
 public class BajaPostulantes extends javax.swing.JFrame implements PropertyChangeListener{
 
     private Sistema miModelo; 
