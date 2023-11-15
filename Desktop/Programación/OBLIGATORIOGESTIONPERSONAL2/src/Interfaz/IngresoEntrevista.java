@@ -4,11 +4,13 @@
  */
 package Interfaz;
 
+import Dominio.Entrevista;
 import Dominio.Evaluador;
 import Dominio.Postulante;
 import Dominio.Sistema;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultListModel;
-
 
 public class IngresoEntrevista extends javax.swing.JFrame {
 
@@ -17,20 +19,20 @@ public class IngresoEntrevista extends javax.swing.JFrame {
     DefaultListModel<String> modelojlisteval = new DefaultListModel<>();
 
     public IngresoEntrevista(Sistema s) {
-        this.miModelo = s; 
+        this.miModelo = s;
         initComponents();
         jListPostu.setModel(modelojlistpost);
         jListEvalu.setModel(modelojlisteval);
 
-    for (Postulante postulante : miModelo.getListaPostulantes()) {
+        for (Postulante postulante : miModelo.getListaPostulantes()) {
             modelojlistpost.addElement(postulante.getNombre());
-            
-    for (Evaluador evaluador : miModelo.getListaEvaluadores()){
-        modelojlisteval.addElement(evaluador.getNombre());
-    
-    }
-    }
-    
+
+            for (Evaluador evaluador : miModelo.getListaEvaluadores()) {
+                modelojlisteval.addElement(evaluador.getNombre());
+
+            }
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -45,14 +47,14 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textPuntaje = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        EnviarEntrevista = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAcoment = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,12 +77,17 @@ public class IngresoEntrevista extends javax.swing.JFrame {
 
         jLabel7.setText("Ingrese:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Enviar");
+        EnviarEntrevista.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EnviarEntrevista.setText("Enviar");
+        EnviarEntrevista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnviarEntrevistaActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        textAcoment.setColumns(20);
+        textAcoment.setRows(5);
+        jScrollPane3.setViewportView(textAcoment);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +110,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(9, 9, 9))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +123,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton1))))
+                                        .addComponent(EnviarEntrevista))))
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
@@ -146,13 +153,13 @@ public class IngresoEntrevista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(jButton1))
+                        .addComponent(EnviarEntrevista))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
@@ -160,11 +167,49 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-  
+    private void EnviarEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarEntrevistaActionPerformed
+        String nombrePostu = jListPostu.getSelectedValue();
+        String nombreEvalu = jListEvalu.getSelectedValue();
+
+        Postulante postuSeleccionado = obtenerPostulantePorNombre(nombrePostu);
+        Evaluador evaluSeleccionado = obtenerEvaluadorPorNombre(nombreEvalu); // Implementa esta función
+
+       // if (postuSeleccionado != null && evaluSeleccionado != null) {
+
+            int puntaje = Integer.parseInt(textPuntaje.getText());
+            String comentarios = textAcoment.getText();
+
+            Entrevista entrevista = new Entrevista(postuSeleccionado, evaluSeleccionado, comentarios, puntaje);
+
+            modelojlistpost.removeElement(nombrePostu);
+            modelojlisteval.removeElement(nombreEvalu);
+            textAcoment.setText("");
+            textPuntaje.setText("");
+
+       
+       // }
+    }//GEN-LAST:event_EnviarEntrevistaActionPerformed
+
+    private Postulante obtenerPostulantePorNombre(String nombrePostulante) {
+        for (Postulante postulante : miModelo.getListaPostulantes()) {
+            if (postulante.getNombre().equals(nombrePostulante)) {
+                return postulante;
+            }
+        }
+        return null; // No se encontró el postulante
+    }
+
+    private Evaluador obtenerEvaluadorPorNombre(String nombreEvaluador) {
+        for (Evaluador evaluador : miModelo.getListaEvaluadores()) {
+            if (evaluador.getNombre().equals(nombreEvaluador)) {
+                return evaluador;
+            }
+        }
+        return null;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton EnviarEntrevista;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -177,8 +222,8 @@ public class IngresoEntrevista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea textAcoment;
+    private javax.swing.JTextField textPuntaje;
     // End of variables declaration//GEN-END:variables
 }

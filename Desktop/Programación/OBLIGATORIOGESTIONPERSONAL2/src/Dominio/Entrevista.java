@@ -5,8 +5,28 @@
 package Dominio;
 
 
-public class Entrevista {
-
-
+public class Entrevista{
+    private Postulante postulante;
+    private Evaluador evaluador;
+    private String comentario;
+    private int puntaje;
     
+    
+    public Entrevista(Postulante postulante, Evaluador evaluador, String comentario, int puntaje) {
+        this.postulante = postulante;
+        this.evaluador = evaluador;
+        this.comentario = comentario;
+        this.puntaje = puntaje;  
 }
+        
+    
+    public String getComentario(){
+        return comentario;
+    }
+    
+    public int getPuntaje(){
+        return puntaje;
+    }
+
+}
+

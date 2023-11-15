@@ -17,7 +17,7 @@ public class RegistroExperiencia extends javax.swing.JFrame implements PropertyC
     private Postulante postu;
 
     DefaultListModel<String> modelojlistpostnivel = new DefaultListModel<>();
-    SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 10, 1);
+    SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 10, 1);
 
     public RegistroExperiencia(Sistema s) {
         this.miModelo = s;
