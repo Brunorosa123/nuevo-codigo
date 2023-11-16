@@ -4,12 +4,19 @@
  */
 package Dominio;
 
+import java.util.ArrayList;
 
 public class Puesto {
 
-   private String nombrePuesto; 
-   private String tipoPuesto;
-   private Tematica tematica;
+    private Sistema miModelo;
+    public Puesto(String nombrePuesto, String tipoPuesto, ArrayList<String> listaTemas) {
+        this.nombrePuesto = nombrePuesto;
+        this.tipoPuesto = tipoPuesto;
+        this.listaTemas= listaTemas;
+    }
+    private String nombrePuesto;
+    private String tipoPuesto;
+    private ArrayList<String> listaTemas;
 
     public String getNombrePuesto() {
         return nombrePuesto;
@@ -19,8 +26,8 @@ public class Puesto {
         return tipoPuesto;
     }
 
-    public Tematica getTematica() {
-        return tematica;
+    public ArrayList<String> getTematicaList() {
+        return listaTemas;
     }
 
     public void setNombrePuesto(String nombrePuesto) {
@@ -31,8 +38,8 @@ public class Puesto {
         this.tipoPuesto = tipoPuesto;
     }
 
-    public void setTematica(Tematica tematica) {
-        this.tematica = tematica;
+    public void setTematicaList(ArrayList<String> listaTemas) {
+        this.listaTemas = listaTemas;
     }
-   
 }
+

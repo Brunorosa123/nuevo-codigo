@@ -6,52 +6,50 @@ package Dominio;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author brumo
+ */
+public class Postulante extends Persona implements Comparable<Postulante> {
 
-public class Postulante extends Persona{
-    
     private int telefono;
     private String mail;
     private String linkedin;
     private String tipoTrabajo;
     private ArrayList<String> tematicasConNiveles;
 
-    
-    public Postulante (String nombre, int cedula, String direccion, int telefono, String mail, String linkedin, String tipoTrabajo, ArrayList<String> tematicasConNiveles) {
-        super(nombre,cedula,direccion);
+    public Postulante(String nombre, int cedula, String direccion, int telefono, String mail, String linkedin, String tipoTrabajo, ArrayList<String> tematicasConNiveles) {
+        super(nombre, cedula, direccion);
         this.telefono = telefono;
         this.mail = mail;
         this.linkedin = linkedin;
         this.tipoTrabajo = tipoTrabajo;
-                this.tematicasConNiveles = tematicasConNiveles != null ? tematicasConNiveles : new ArrayList<>();
+        this.tematicasConNiveles = tematicasConNiveles != null ? tematicasConNiveles : new ArrayList<>();
 
     }
-      
-   
-   
-    
-public int getTelPostulante() {
+
+    public int getTelPostulante() {
         return telefono;
     }
 
-public String getMailPostulante() {
+    public String getMailPostulante() {
         return mail;
     }
 
-public String getLinkedinPostulante() {
+    public String getLinkedinPostulante() {
         return linkedin;
     }
 
-public int getNivelPostulante() {
+    public int getNivelPostulante() {
         int nivel = 0;
         return nivel;
     }
 
-public String getTipoTrabajoPostulante() {
+    public String getTipoTrabajoPostulante() {
         return tipoTrabajo;
     }
 
-
-public void agregarTematicasConNiveles(String tematica) {
+    public void agregarTematicasConNiveles(String tematica) {
         tematicasConNiveles.add(tematica);
     }
 
@@ -59,7 +57,14 @@ public void agregarTematicasConNiveles(String tematica) {
         return tematicasConNiveles;
     }
 
+    @Override
+    public int compareTo(Postulante otro) {
+        return Integer.compare(this.cedula, otro.cedula);
+    }
 
-
+    @Override
+    public String toString() {
+        return this.getNombre() + "(" + this.getCedula() + ")";
+    }
 
 }
