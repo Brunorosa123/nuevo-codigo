@@ -4,13 +4,15 @@
  */
 package Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
  * @author brumo
  */
-public class Postulante extends Persona implements Comparable<Postulante> {
+public class Postulante extends Persona implements Comparable<Postulante>, Serializable {
 
     private int telefono;
     private String mail;
@@ -61,10 +63,20 @@ public class Postulante extends Persona implements Comparable<Postulante> {
     public int compareTo(Postulante otro) {
         return Integer.compare(this.cedula, otro.cedula);
     }
-
     @Override
+
     public String toString() {
         return this.getNombre() + "(" + this.getCedula() + ")";
     }
 
+
+    public boolean tieneTodasTematicasConNivel(ArrayList<String> tematicas, int nivel) {
+        for (String tematica : tematicas) {
+            // Verificar si el postulante tiene la temática con el nivel deseado
+            if (!tematicasConNiveles.contains(tematica + "(" + nivel + ")")) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

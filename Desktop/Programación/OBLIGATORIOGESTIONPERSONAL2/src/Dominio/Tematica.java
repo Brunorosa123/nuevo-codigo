@@ -1,11 +1,16 @@
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Dominio;
 
+import java.io.Serializable;
 
-public class Tematica {
+
+public class Tematica implements Serializable{
 
     
     public Tematica(String nombreTematica, String descripcion) {

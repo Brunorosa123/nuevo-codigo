@@ -4,8 +4,10 @@
  */
 package Dominio;
 
+import java.io.Serializable;
 
-public class Evaluador extends Persona {
+
+public class Evaluador extends Persona implements Serializable{
  
     private int añoIngreso;
 

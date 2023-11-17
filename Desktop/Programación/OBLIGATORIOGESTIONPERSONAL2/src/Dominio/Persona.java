@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 abstract class Persona {
 
-private String nombre;
+String nombre;
 int cedula;
 private String direccion;
 

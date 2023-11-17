@@ -4,9 +4,10 @@
  */
 package Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Puesto {
+public class Puesto implements Serializable{
 
     private Sistema miModelo;
     public Puesto(String nombrePuesto, String tipoPuesto, ArrayList<String> listaTemas) {

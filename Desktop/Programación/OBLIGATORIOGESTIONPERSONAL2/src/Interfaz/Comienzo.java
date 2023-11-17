@@ -91,7 +91,9 @@ public class Comienzo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonDatosAnterioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDatosAnterioresActionPerformed
-        // TODO add your handling code here:
+Inicio ventanaPrincipal= new Inicio(miModelo);
+        ventanaPrincipal.setVisible(true);
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_botonDatosAnterioresActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed

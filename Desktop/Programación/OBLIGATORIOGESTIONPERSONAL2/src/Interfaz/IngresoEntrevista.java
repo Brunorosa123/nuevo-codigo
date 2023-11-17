@@ -17,23 +17,23 @@ public class IngresoEntrevista extends javax.swing.JFrame {
     private Sistema miModelo;
     DefaultListModel<String> modelojlistpost = new DefaultListModel<>();
     DefaultListModel<String> modelojlisteval = new DefaultListModel<>();
+    private int numeroEntrevista = 1;
 
     public IngresoEntrevista(Sistema s) {
         this.miModelo = s;
-        initComponents();
-        jListPostu.setModel(modelojlistpost);
-        jListEvalu.setModel(modelojlisteval);
+    initComponents();
+    jListPostu.setModel(modelojlistpost);
+    jListEvalu.setModel(modelojlisteval);
 
-        for (Postulante postulante : miModelo.getListaPostulantes()) {
-            modelojlistpost.addElement(postulante.getNombre());
-
-            for (Evaluador evaluador : miModelo.getListaEvaluadores()) {
-                modelojlisteval.addElement(evaluador.getNombre());
-
-            }
-        }
-
+    // Utilizar el nuevo método para obtener postulantes sin entrevistas
+    for (Postulante postulante : miModelo.obtenerPostulantesSinEntrevistas()) {
+        modelojlistpost.addElement(postulante.getNombre());
     }
+
+    for (Evaluador evaluador : miModelo.getListaEvaluadores()) {
+        modelojlisteval.addElement(evaluador.getNombre());
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,8 +143,8 @@ public class IngresoEntrevista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -155,7 +155,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
@@ -174,20 +174,21 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         Postulante postuSeleccionado = obtenerPostulantePorNombre(nombrePostu);
         Evaluador evaluSeleccionado = obtenerEvaluadorPorNombre(nombreEvalu); // Implementa esta función
 
-       // if (postuSeleccionado != null && evaluSeleccionado != null) {
+        // if (postuSeleccionado != null && evaluSeleccionado != null) {
+        int puntaje = Integer.parseInt(textPuntaje.getText());
+        String comentarios = textAcoment.getText();
 
-            int puntaje = Integer.parseInt(textPuntaje.getText());
-            String comentarios = textAcoment.getText();
+        Entrevista entrevista = new Entrevista(postuSeleccionado, evaluSeleccionado, comentarios, puntaje, numeroEntrevista);
+        miModelo.agregarEntrevista(entrevista);
+        
+        numeroEntrevista++;
 
-            Entrevista entrevista = new Entrevista(postuSeleccionado, evaluSeleccionado, comentarios, puntaje);
+        modelojlistpost.removeElement(nombrePostu);
+        modelojlisteval.removeElement(nombreEvalu);
+        textAcoment.setText("");
+        textPuntaje.setText("");
 
-            modelojlistpost.removeElement(nombrePostu);
-            modelojlisteval.removeElement(nombreEvalu);
-            textAcoment.setText("");
-            textPuntaje.setText("");
-
-       
-       // }
+        // }
     }//GEN-LAST:event_EnviarEntrevistaActionPerformed
 
     private Postulante obtenerPostulantePorNombre(String nombrePostulante) {

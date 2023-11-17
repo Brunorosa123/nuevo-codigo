@@ -41,14 +41,6 @@ public class ConsultaParaPuesto extends javax.swing.JFrame {
         }
     }
 
-    private void mostrarPostulantesAprobados(ArrayList<Postulante> postulantes) {
-        // Agregar los nombres de los postulantes al modelo
-        for (Postulante postulante : postulantes) {
-            modeloJListPostu.addElement(postulante.getNombre());
-        }
-
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -202,13 +194,23 @@ public class ConsultaParaPuesto extends javax.swing.JFrame {
 
         if (puesto != null) {
             ArrayList<String> tematicasPuesto = puesto.getTematicaList();
-            ArrayList<Postulante> postulantesAprobados = miModelo.obtenerPostulantesConTematicas(tematicasPuesto);
+            ArrayList<Postulante> postulantesAprobados = miModelo.obtenerPostulantesConTematicasYNivel(tematicasPuesto, nivel);
+            String tipoTrabajoPuesto = puesto.getTipoPuesto();
 
             // Puedes mostrar los postulantes aprobados en tu JTextArea
-            mostrarPostulantesAprobados(postulantesAprobados);
+            for (Postulante postulante : postulantesAprobados) {
+                if (postulante.getTipoTrabajoPostulante().equals(tipoTrabajoPuesto)) {
+
+                    String nombpost = postulante.getNombre();
+                    if (!modeloJListPostu.contains(nombpost)) {
+                        modeloJListPostu.clear();
+                        modeloJListPostu.addElement(nombpost);
+                    
+                    }
+
+                }
+            }
         }
-
-
     }//GEN-LAST:event_consultarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
