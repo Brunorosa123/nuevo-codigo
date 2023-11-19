@@ -21,7 +21,7 @@ public class Inicio extends javax.swing.JFrame {
         this.addWindowListener(new WindowAdapter(){
         @Override
         public void windowClosing(WindowEvent e){
-JOptionPane.showConfirmDialog(null, "Realmente desea salir de Hola Swing?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);            
+JOptionPane.showConfirmDialog(null, "Realmente desea salir del programa?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);            
 e.getWindow().dispose();
         if(JOptionPane.YES_NO_OPTION == JOptionPane.YES_NO_OPTION){
         dispose();

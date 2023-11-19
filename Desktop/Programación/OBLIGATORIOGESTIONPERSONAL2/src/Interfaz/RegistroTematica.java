@@ -157,7 +157,7 @@ public class RegistroTematica extends javax.swing.JFrame implements PropertyChan
     }//GEN-LAST:event_nombreRegistroActionPerformed
 
     private void botoncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarActionPerformed
-            this.dispose(); 
+            dispose(); 
 
     }//GEN-LAST:event_botoncancelarActionPerformed
 

@@ -41,6 +41,7 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
         dirEvaluador = new javax.swing.JTextField();
         añoEvaluador = new javax.swing.JTextField();
         botonRegistrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -86,6 +87,13 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
             }
         });
 
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +118,9 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
                         .addComponent(jLabel2)))
                 .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -136,7 +146,9 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
                     .addComponent(jLabel6)
                     .addComponent(añoEvaluador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(botonRegistrar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonRegistrar)
+                    .addComponent(jButton1))
                 .addGap(34, 34, 34))
         );
 
@@ -170,6 +182,10 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
     private void añoEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoEvaluadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_añoEvaluadorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +227,7 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JTextField cedEvaluador;
     private javax.swing.JTextField dirEvaluador;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

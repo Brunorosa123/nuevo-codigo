@@ -133,6 +133,11 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Siguiente");
@@ -305,6 +310,10 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     private void telPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telPostulanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telPostulanteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
