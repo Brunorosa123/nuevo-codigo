@@ -174,7 +174,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         Postulante postuSeleccionado = obtenerPostulantePorNombre(nombrePostu);
         Evaluador evaluSeleccionado = obtenerEvaluadorPorNombre(nombreEvalu); // Implementa esta función
 
-        // if (postuSeleccionado != null && evaluSeleccionado != null) {
+        if (postuSeleccionado != null && evaluSeleccionado != null) {
         int puntaje = Integer.parseInt(textPuntaje.getText());
         String comentarios = textAcoment.getText();
 
@@ -188,7 +188,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         textAcoment.setText("");
         textPuntaje.setText("");
 
-        // }
+         }
     }//GEN-LAST:event_EnviarEntrevistaActionPerformed
 
     private Postulante obtenerPostulantePorNombre(String nombrePostulante) {
