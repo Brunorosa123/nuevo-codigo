@@ -165,20 +165,25 @@ public class RegistroTematica extends javax.swing.JFrame implements PropertyChan
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     try {
         String nombreTematica = nombreRegistro.getText();
-        validarEntradaNombre(nombreTematica);
 
         String descripcion = descripcionTematica.getText();
-        validarEntradaNombre(descripcion); // Puedes cambiar esta validación según tus requisitos
+        miModelo.esTextoValido(descripcion); 
 
         boolean tematicaExistente = false;
 
         for (Tematica tematica : miModelo.getListaTematicas()) {
             if (tematica.getNombreTematica().equals(nombreTematica)) {
                 tematicaExistente = true;
-                break; // Si la temática ya existe, no es necesario seguir recorriendo la lista
+                break;
             }
         }
 
+        if(!nombreTematica.isEmpty() && !miModelo.esTextoValido(nombreTematica)){
+
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe ingresar una tematica válida");
+        }
+        
         if (!tematicaExistente) {
             Tematica tema = new Tematica(nombreTematica, descripcion);
             miModelo.agregarTematica(tema);
@@ -191,12 +196,7 @@ public class RegistroTematica extends javax.swing.JFrame implements PropertyChan
         // Manejar la excepción, puedes mostrar un mensaje de error o realizar alguna acción específica.
         System.out.println("Error: " + e.getMessage());
     }
-}
 
-private void validarEntradaNombre(String texto) throws Exception {
-    if (texto.isEmpty() || !texto.matches("[a-zA-Z]+")) {
-        throw new Exception("El nombre debe contener solo letras y tener al menos longitud 1.");
-    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
    

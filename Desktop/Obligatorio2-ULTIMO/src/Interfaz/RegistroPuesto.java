@@ -13,6 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -258,7 +259,7 @@ public class RegistroPuesto extends javax.swing.JFrame implements PropertyChange
             
         } catch (Exception e) {
             // Manejar la excepción, puedes mostrar un mensaje de error o realizar alguna acción específica.
-            System.out.println("Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Debe de haber alguna tematica primero");
         }
         nombrePuesto.setText("");
         textAreaTemas.setText("");

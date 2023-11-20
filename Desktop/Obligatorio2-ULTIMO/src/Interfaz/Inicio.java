@@ -3,6 +3,26 @@ package Interfaz;
 import Dominio.Entrevista;
 import Dominio.Postulante;
 import Dominio.Sistema;
+import Interfaz.AltaPostulante;
+import Interfaz.AltaPostulante;
+import Interfaz.BajaPostulantes;
+import Interfaz.BajaPostulantes;
+import Interfaz.ConsultaParaPuesto;
+import Interfaz.ConsultaParaPuesto;
+import Interfaz.ConsultaPorTematica;
+import Interfaz.ConsultaPorTematica;
+import Interfaz.HistorialPostulante;
+import Interfaz.HistorialPostulante;
+import Interfaz.IngresoEntrevista;
+import Interfaz.IngresoEntrevista;
+import Interfaz.RegistroEvaluador;
+import Interfaz.RegistroEvaluador;
+import Interfaz.RegistroExperiencia;
+import Interfaz.RegistroExperiencia;
+import Interfaz.RegistroPuesto;
+import Interfaz.RegistroPuesto;
+import Interfaz.RegistroTematica;
+import Interfaz.RegistroTematica;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -23,7 +43,7 @@ public class Inicio extends javax.swing.JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(null, "Realmente desea salir de Hola Swing?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                int confirm = JOptionPane.showConfirmDialog(null, "Realmente desea salir del programa?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (confirm == JOptionPane.YES_OPTION) {
                     try {
                         miModelo.guardardatosentxt();
@@ -302,14 +322,22 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistroEvaluadorActionPerformed
 
     private void BajaPostulantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajaPostulantesActionPerformed
+        if(miModelo.getListaPostulantes().size()==0){
+        JOptionPane.showMessageDialog(null, "Error: No hay postulantes. Por favor, ingresa un postulante.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         BajaPostulantes bajaPostulantes = new BajaPostulantes(miModelo);
         bajaPostulantes.setVisible(true);
+        }
 
     }//GEN-LAST:event_BajaPostulantesActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if(miModelo.getListaPostulantes().size()==0){
+        JOptionPane.showMessageDialog(null, "Error: No hay postulantes. Por favor, ingresa un postulante.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         HistorialPostulante historial = new HistorialPostulante(miModelo);
         historial.setVisible(true);
+        }
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -324,8 +352,13 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(miModelo.getListaPuestos().isEmpty()){
+         JOptionPane.showMessageDialog(null, "Error: No hay puesto registrado. Por favor, ingresa un puesto.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+
         ConsultaParaPuesto ventanaConsulta = new ConsultaParaPuesto(miModelo);
-        ventanaConsulta.setVisible(true);        // TODO add your handling code here:
+        ventanaConsulta.setVisible(true);
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -334,8 +367,12 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ConsultaPorTematica ventanaConsultatem = new ConsultaPorTematica(miModelo);
-        ventanaConsultatem.setVisible(true);         // TODO add your handling code here:
+        if(miModelo.getListaTematicas().size()==0){
+        JOptionPane.showMessageDialog(null, "Error: No hay tematica registrada. Por favor, ingresa una tematica.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+        ConsultaPorTematica consult= new ConsultaPorTematica(miModelo);
+      consult.setVisible(true);
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -187,7 +188,7 @@ public class ConsultaParaPuesto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarActionPerformed
-
+if(jListPostu != null){
         ArchivoGrabacion archivo = new ArchivoGrabacion("Consulta.txt");
 
         for (Postulante postulante : postulantesAprobados) {
@@ -196,7 +197,10 @@ public class ConsultaParaPuesto extends javax.swing.JFrame {
         }
 
         archivo.cerrar();
+}else{
+            JOptionPane.showMessageDialog(null, "Debe de haber algún postulante primero");
 
+}
     }//GEN-LAST:event_exportarActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed

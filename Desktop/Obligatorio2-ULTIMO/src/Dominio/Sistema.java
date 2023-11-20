@@ -181,8 +181,39 @@ public class Sistema implements Serializable{
         out.close();
     
         }
+   
     
+   
+public boolean esEnteroValido(String texto) {
+    try {
+        Integer.parseInt(texto);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
 
+
+public boolean esTextoValido(String texto) {
+    // Puedes agregar más lógica de validación aquí si es necesario
+    return !texto.isEmpty();
+}
+    
+    
+ public static boolean estaVacio(Object objeto) {
+        if (objeto == null) {
+            return true;
+        } else {
+            if (objeto instanceof String) {
+                return ((String) objeto).isEmpty();
+            } else if (objeto instanceof Integer) {
+                return false; // Los enteros no se pueden "vaciar", se asume que siempre tienen un valor
+            } else {
+                // Puedes agregar más lógica para otros tipos si es necesario
+                return false;
+            }
+        }
+    }
 
 }
 

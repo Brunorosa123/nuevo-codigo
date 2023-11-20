@@ -170,31 +170,48 @@ public class RegistroEvaluador extends javax.swing.JFrame implements PropertyCha
     }//GEN-LAST:event_cedEvaluadorActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+  try {
         String nombreEv = nomEvaluador.getText();
-        
-        try{
-        int cedulaEv = Integer.parseInt(cedEvaluador.getText());
-        
+        String cedulaEvStr = cedEvaluador.getText();
         String direccionEv = dirEvaluador.getText();
-        int añoingresoEv = Integer.parseInt(añoEvaluador.getText());
+        String añoingresoEvStr = añoEvaluador.getText();
 
-        if (cedulasRegistradas.contains(cedulaEv)) {
-            JOptionPane.showMessageDialog(this, "La cédula ingresada ya está registrada.", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-        
+        // Validar que todos los campos estén completos
+        if (miModelo.estaVacio(nombreEv) || miModelo.estaVacio(direccionEv) || miModelo.estaVacio(cedulaEvStr) || miModelo.estaVacio(añoingresoEvStr)) {
+            JOptionPane.showMessageDialog(null, "Error: Complete todos los campos.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que la cédula del evaluador sea un número entero válido
+        if (!miModelo.esEnteroValido(cedulaEvStr)) {
+            JOptionPane.showMessageDialog(this, "Error: Ingrese un número de cédula válido", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el año de ingreso sea un número entero válido
+        if (!miModelo.esEnteroValido(añoingresoEvStr)) {
+            JOptionPane.showMessageDialog(this, "Error: Ingrese un año de ingreso válido", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Convertir campos a los tipos apropiados
+        int cedulaEv = Integer.parseInt(cedulaEvStr);
+        int añoingresoEv = Integer.parseInt(añoingresoEvStr);
+
+        // Resto de tu código
         Evaluador evalua = new Evaluador(nombreEv, cedulaEv, direccionEv, añoingresoEv);
         miModelo.agregarEvaluador(evalua);
 
+        // Limpiar los campos después de agregar el Evaluador
         nomEvaluador.setText("");
         cedEvaluador.setText("");
         dirEvaluador.setText("");
         añoEvaluador.setText("");
-        }
-        } catch (NumberFormatException e) {
-        // Manejo de la excepción (usuario ingresó datos no numéricos)
-        JOptionPane.showMessageDialog(this, "Ingrese valores numéricos para Cédula y Año de ingreso.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error: Ingrese números válidos en los campos numéricos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
     }
-
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void añoEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoEvaluadorActionPerformed

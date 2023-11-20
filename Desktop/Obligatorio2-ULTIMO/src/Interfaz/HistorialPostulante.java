@@ -8,9 +8,17 @@ import Dominio.Entrevista;
 import Dominio.Postulante;
 import Dominio.Sistema;
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -19,8 +27,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
-
 
 public class HistorialPostulante extends javax.swing.JFrame {
 
@@ -33,6 +39,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
     JList<String> listaExp = new JList<>(modeloexp);
     JTable tabla = new JTable(modeloTabla);
     TableRowSorter<DefaultTableModel> sorter;
+    private String linkedinUrl;
 
     public HistorialPostulante(Sistema s) {
         initComponents();
@@ -77,7 +84,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
                                 direccion.setText(postulante.getDireccion());
                                 telPostu.setText(String.valueOf(postulante.getTelPostulante()));
                                 mailPostu.setText(postulante.getMailPostulante());
-                                linkPostu.setText(postulante.getLinkedinPostulante());
+                                linkedinUrl = postulante.getLinkedinPostulante();
+                                linkPostu.setText("<html><a href=''>" + linkedinUrl + "</a></html>");
                                 formatoPostu.setText(postulante.getTipoTrabajoPostulante());
 
                                 modeloexp.clear();
@@ -107,6 +115,27 @@ public class HistorialPostulante extends javax.swing.JFrame {
                 }
             }
         });
+        linkPostu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        linkPostu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    URI uri = new URI(linkedinUrl);
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(uri);
+                    } else {
+                        System.out.println(" Error");
+                    }
+                } catch (URISyntaxException ex) {
+                    System.out.println("El enlace no es válido.");
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    System.out.println("Se produjo un error al intentar abrir el enlace.");
+                    ex.printStackTrace();
+                }
+            }
+        });
+
     }
 
     // Método para limpiar la tabla
@@ -229,9 +258,17 @@ public class HistorialPostulante extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "evaluador", "puntaje", "comentario"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaEntrevista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaEntrevistaMouseClicked(evt);
@@ -286,6 +323,12 @@ public class HistorialPostulante extends javax.swing.JFrame {
         jLabel19.setText("Historial Postulante");
 
         jLabel20.setText("Buscar");
+
+        linkPostu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkPostuMouseClicked(evt);
+            }
+        });
 
         jScrollPane6.setViewportView(listaPostulantes);
 
@@ -468,7 +511,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        barrabuscar.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tablaEntrevistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEntrevistaMouseClicked
@@ -477,6 +520,11 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
     private void barrabuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barrabuscarKeyReleased
     }//GEN-LAST:event_barrabuscarKeyReleased
+
+    private void linkPostuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkPostuMouseClicked
+
+    }//GEN-LAST:event_linkPostuMouseClicked
+//Método para pintar de rojo la palabra del buscador 
 
     public void highlightFilter(JTable table, String filterText) {
         table.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {

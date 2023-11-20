@@ -4,9 +4,9 @@
  */
 package Interfaz;
 
-import Dominio.Persona;
 import Dominio.Postulante;
 import Dominio.Sistema;
+import Interfaz.RegistroExperiencia;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -22,12 +22,8 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     private Sistema modelojlist;
     private Postulante postu;
 
-    //public ArrayList<Integer> cedulasRegistradas = new ArrayList<>();
+    private ArrayList<Integer> cedulasRegistradas = new ArrayList<>();
 
-    //public ArrayList<Integer> getCedulasRegistradas() {
-    //return cedulasRegistradas;
-//}
-    
     public AltaPostulante(Sistema s) {
         initComponents();
         this.miModelo = s;
@@ -36,8 +32,6 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
         grupoDeBotones.add(presencial);
         grupoDeBotones.add(mixto);
 
-    
-    
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +39,9 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     private void initComponents() {
 
         grupoDeBotones = new javax.swing.ButtonGroup();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,7 +60,15 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
         direccionPostulante = new javax.swing.JTextField();
         telPostulante = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+
+        jLabel9.setText("jLabel9");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -141,19 +146,15 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+
+        jButton3.setText("Siguiente");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Siguiente");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel11.setText("Poner en el formato  \"https://uy.linkedin.com/\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,39 +163,49 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(139, 139, 139)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(39, 39, 39)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(mail, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-                                .addComponent(telPostulante)
-                                .addComponent(direccionPostulante)
-                                .addComponent(cedula)
-                                .addComponent(nombrePostu)
-                                .addComponent(linkedin))))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(remoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(presencial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(mixto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(13, 13, 13)))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(remoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(presencial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(mixto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(mail, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                                        .addComponent(telPostulante)
+                                        .addComponent(direccionPostulante)
+                                        .addComponent(cedula)
+                                        .addComponent(nombrePostu)
+                                        .addComponent(linkedin)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(229, 229, 229))))))
+                        .addContainerGap(8, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,16 +236,25 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(linkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(remoto)
-                    .addComponent(presencial)
-                    .addComponent(mixto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(presencial)
+                            .addComponent(remoto)
+                            .addComponent(mixto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton3))
                 .addGap(27, 27, 27))
         );
 
@@ -246,6 +266,7 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     }//GEN-LAST:event_cedulaActionPerformed
 
     private void linkedinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkedinActionPerformed
+   
         // TODO add your handling code here:
     }//GEN-LAST:event_linkedinActionPerformed
 
@@ -261,8 +282,6 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_mixtoActionPerformed
 
-    
-    
     private void nombrePostuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombrePostuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombrePostuActionPerformed
@@ -271,70 +290,83 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_telPostulanteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    try {
+        String nombrePost = nombrePostu.getText();
+        String cedulaText = cedula.getText();
+        String direccion = direccionPostulante.getText();
+        String telText = telPostulante.getText();
+        String mailPost = mail.getText();
+        String linkedinPostu = linkedin.getText();
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Validar que todos los campos estén completos
+        if (nombrePost.isEmpty() || cedulaText.isEmpty() || direccion.isEmpty() || telText.isEmpty() || mailPost.isEmpty() || linkedinPostu.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos de texto", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si hay campos vacíos
+        }
 
-      try {
-    String nombrePost = nombrePostu.getText();
-    int cedulaPost = Integer.parseInt(cedula.getText());
-
-    // Verificar si la cédula ya está registrada
-    for (Persona persona : miModelo.listaPersonas) {
-        if (persona.getCedula() == cedulaPost) {
-            // La cédula ya está registrada, mostrar un mensaje de error
-            JOptionPane.showMessageDialog(null, "La cédula ya está registrada.");
-            // Salir del método o hacer otras acciones según tu lógica
+        // Validar que la cédula sea un número entero válido
+        if (!miModelo.esEnteroValido(cedulaText)) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número de cédula válido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    }
 
-    // Si llega aquí, la cédula no está registrada
-    // Puedes continuar con el resto de la lógica
+        // Validar que el teléfono sea un número entero válido
+        if (!miModelo.esEnteroValido(telText)) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número de teléfono válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    String direccion = direccionPostulante.getText();
-    int tel = Integer.parseInt(telPostulante.getText());
-    String mailPost = mail.getText();
-    String linkedinPostu = linkedin.getText();
+        // Validar que la dirección contenga texto
+        if (!miModelo.esTextoValido(direccion)) {
+            JOptionPane.showMessageDialog(this, "Ingrese una dirección válida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    String opcionSeleccionada = "";
-    if (remoto.isSelected()) {
-        opcionSeleccionada = "remoto";
-    } else if (presencial.isSelected()) {
-        opcionSeleccionada = "presencial";
-    } else if (mixto.isSelected()) {
-        opcionSeleccionada = "mixto";
-    }
- 
-    // Realiza acciones basadas en la opción seleccionada
-    if ("remoto".equals(opcionSeleccionada) || "presencial".equals(opcionSeleccionada) || "mixto".equals(opcionSeleccionada)) {
-        Postulante postu = new Postulante(nombrePost, cedulaPost, direccion, tel, mailPost, linkedinPostu, opcionSeleccionada, new ArrayList<>());
-        miModelo.agregarPostulante(postu);
+        // Convertir campos a los tipos apropiados
+        int cedulaPost = Integer.parseInt(cedulaText);
+        int tel = Integer.parseInt(telText);
 
-        // Si se agrega el postulante con éxito, agregar la cédula al array
-    }
+        // Verificar si la cédula ya está registrada
+        if (cedulasRegistradas.contains(cedulaPost)) {
+            JOptionPane.showMessageDialog(null, "La cédula ya está registrada.");
+            return; // Salir del método si la cédula ya está registrada
+        }
 
-    // Limpiar los campos después de agregar el Postulante
-    nombrePostu.setText("");
-    cedula.setText("");
-    direccionPostulante.setText("");
-    telPostulante.setText("");
-    mail.setText("");
-    linkedin.setText("");
+        String opcionSeleccionada = "";
+        if (remoto.isSelected()) {
+            opcionSeleccionada = "remoto";
+        } else if (presencial.isSelected()) {
+            opcionSeleccionada = "presencial";
+        } else if (mixto.isSelected()) {
+            opcionSeleccionada = "mixto";
+        }
 
-    RegistroExperiencia ventanaExp = new RegistroExperiencia(miModelo);
-    ventanaExp.setVisible(true);
+        // Resto de tu código
+        if ("remoto".equals(opcionSeleccionada) || "presencial".equals(opcionSeleccionada) || "mixto".equals(opcionSeleccionada)) {
+            Postulante postu = new Postulante(nombrePost, cedulaPost, direccion, tel, mailPost, linkedinPostu, opcionSeleccionada, new ArrayList<>());
+            miModelo.agregarPostulante(postu);
 
-} catch (NumberFormatException e) {
-    // Manejar la excepción si la entrada de cedula no es un número válido
-    JOptionPane.showMessageDialog(null, "Ingrese un número válido para la cédula.");
-} catch (Exception e) {
-    // Manejar otras excepciones, puedes mostrar un mensaje de error o realizar alguna acción específica.
-    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-}
-    }//GEN-LAST:event_jButton2ActionPerformed
+            // Si se agrega el postulante con éxito, agregar la cédula al array
+            cedulasRegistradas.add(cedulaPost);
+
+            // Limpiar los campos después de agregar el Postulante
+            nombrePostu.setText("");
+            cedula.setText("");
+            direccionPostulante.setText("");
+            telPostulante.setText("");
+            mail.setText("");
+            linkedin.setText("");
+
+            RegistroExperiencia ventanaExp = new RegistroExperiencia(miModelo);
+            ventanaExp.setVisible(true);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese números válidos en los campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }     // TODO add your handling code here:}
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +377,10 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     private javax.swing.JTextField direccionPostulante;
     private javax.swing.ButtonGroup grupoDeBotones;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -354,6 +388,9 @@ public class AltaPostulante extends javax.swing.JFrame implements PropertyChange
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField linkedin;
     private javax.swing.JTextField mail;
     private javax.swing.JRadioButton mixto;
